@@ -15,16 +15,20 @@ from db import db
 app = FastAPI()
 
 # ------------------ CORS ------------------
+
+origins = [
+    "*",   # optional, but keep for testing
+    "https://devops-ai-agent.vercel.app",
+    "https://devops-ai-agent-git-main-kushrajsinhs-projects.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "*",
-        "https://devops-ai-agent.vercel.app"
-
-        ],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # ------------------ Models ------------------
