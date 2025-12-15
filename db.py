@@ -3,9 +3,8 @@ import os
 
 MONGO_URI = os.getenv("MONGODB_URI")
 
-client = AsyncIOMotorClient(
-    MONGO_URI,
-    serverSelectionTimeoutMS=5000
-)
+if not MONGO_URI:
+    raise RuntimeError("MONGODB_URI is not set")
 
+client = AsyncIOMotorClient(MONGO_URI)
 db = client["devops_ai"]
