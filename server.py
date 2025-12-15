@@ -39,7 +39,7 @@ class ChatRequest(BaseModel):
 
 # ------------------ Create Chat ------------------
 @app.post("/chat/create")
-async def create_chat():
+async def create_chat():    
     result = await db.chats.insert_one({"title": "New Chat", "messages": []})
     return {"chat_id": str(result.inserted_id)}
 
@@ -203,7 +203,7 @@ async def get_chats():
 # ------------------ Get Single Chat ------------------
 @app.get("/chat/{chat_id}")
 async def get_chat(chat_id: str):
-    oid = ObjectId(chat_id)
+    oid = ObjectId(chat_id) 
     chat = await db.chats.find_one({"_id": oid})
     return {
         "id": str(chat["_id"]),
